@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {
+            background-color: #1a1a1a;
+            color: white;
+            font-family: Arial, sans-serif;
+        }
+        .search-container {
+            padding: 1rem;
+            background-color: #333;
+        }
+        #search {
+            padding: 0.5rem;
+            width: 200px;
+            background-color: #444;
+            border: none;
+            color: white;
+            border-radius: 4px;
+        }
+        .leaderboard {
+            margin: 1rem;
+        }
+        .player-row {
+            display: flex;
+            align-items: center;
+            background-color: #333;
+            margin: 0.5rem 0;
+            padding: 1rem;
+            border-radius: 4px;
+        }
+        .rank {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-right: 1rem;
+        }
+        .rank-1 { background-color: #ffd700; }
+        .rank-2 { background-color: #c0c0c0; }
+        .rank-3 { background-color: #cd7f32; }
+        .player-info {
+            display: flex;
+            align-items: center;
+            flex: 1;
+        }
+        .avatar {
+            width: 40px;
+            height: 40px;
+            background-color: #555;
+            margin-right: 1rem;
+            border-radius: 4px;
+        }
+        .region {
+            padding: 0.25rem 0.5rem;
+            background-color: #444;
+            border-radius: 4px;
+            margin: 0 1rem;
+        }
+        .score {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin: 0 1rem;
+        }
+        .badge {
+            padding: 0.25rem 0.5rem;
+            background-color: #6b46c1;
+            border-radius: 4px;
+            margin: 0 0.25rem;
+            font-size: 0.8rem;
+        }
+        .editable[contenteditable="true"] {
+            border: 1px dashed #666;
+            padding: 2px;
+        }
+    </style>
+</head>
+<body>
+    <div class="search-container">
+        <input type="text" id="search" placeholder="Search..." onkeyup="checkAdmin(this.value)">
+    </div>
+    <div class="leaderboard">
+        <div class="player-row">
+            <div class="rank rank-1">1</div>
+            <div class="player-info">
+                <div class="avatar"></div>
+                <span class="name" data-editable="true">Player One</span>
+                <span class="region">NA</span>
+                <span class="score" data-editable="true">300</span>
+                <div>
+                    <span class="badge">HT4</span>
+                    <span class="badge">RHT1</span>
+                    <span class="badge">RHT1</span>
+                </div>
+            </div>
+        </div>
+        <!-- More player rows following the same pattern -->
+    </div>
+
+    <script>
+        function checkAdmin(value) {
+            const editableElements = document.querySelectorAll('[data-editable="true"]');
+            if (value === 'ADMIN123') {
+                editableElements.forEach(el => {
+                    el.contentEditable = true;
+                    el.classList.add('editable');
+                });
+                alert('Admin mode activated - You can now edit player names and scores');
+            } else {
+                editableElements.forEach(el => {
+                    el.contentEditable = false;
+                    el.classList.remove('editable');
+                });
+            }
+        }
+    </script>
+</body>
+</html>
